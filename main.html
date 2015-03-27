@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>App Index</title>
+    <style type="text/css">
+    body{
+        width: 100%;
+        height: 100%;
+        margin: 0 0 0 0;
+
+        background: #ecf0f1;
+        direction: rtl;
+        -webkit-user-select: none; /* Chrome/Safari */        
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+ */
+
+        /* Rules below not implemented in browsers yet */
+        -o-user-select: none;
+        user-select: none;        
+    }
+    .warpper{
+
+    }
+    .warpper nav{
+        height: 50px;
+        background: #2980b9;
+    }
+    #back{
+        float: left;
+        width: 30px;
+        height: 30px;
+        margin-top: 10px;
+        
+    }
+    #logo{
+        display: block;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 auto;
+        
+        width: 50px;
+        height: 50px;
+    }
+    #forward{
+        float: right;
+        width: 30px;
+        height: 30px;
+        margin-top: 10px;
+        
+    }
+    .small-bar{
+        height: 2px;
+        background: #e74c3c;
+    }
+	.pics{
+		left:25%;
+		width:50%;
+		height:50%;
+		top:25%;
+		
+		position:absolute;
+		text-align:center;
+		
+		
+	}
+	#biglogo{
+		width: 50%;
+		max-width: 100%;
+		height: auto;
+		max-height: 100%;
+		display: block;
+		margin: 0 auto;
+	
+	}
+	h1{
+		font-size: 5.9vw;
+		font-family: sans-serif;
+	}
+	h2{
+		font-size: 3.50vw;
+		font-family: sans-serif;
+	}
+	.text-container{
+		padding-top: 53vh;
+		text-align: center;
+	}
+	.text-container h2{
+		margin-top: -2vh;
+		color: #c0392b;
+	}
+	#icon{
+		width: 100%;
+		height: 100%;
+
+	}
+	
+    </style>
+</head>
+<body ontouchstart="location.href='content.html'">
+    <div class="warpper">
+        <div>
+            <nav>
+                <img id="forward" ontouchstart="location.href='content.html'" src="img/forward.png" alt="forward button">
+                <img id="logo" src="img/small-logo.png" alt="logo img">
+                
+            </nav>
+            <div class="small-bar"></div>  
+        </div>
+        <div class="pics">
+        	<img id="biglogo" src="img/logo.png" alt="logo img"> 	
+        </div>
+
+        <div class="text-container">
+        	       	
+        	<h1>Study well</h1>
+        	<h2>Your Study Pomodoro</h2>
+        </div>
+    </div>
+    
+</body>
+</html>

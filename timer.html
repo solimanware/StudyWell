@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App Timer</title>
+<link href="css/jquery.classycountdown.css" rel="stylesheet" type="text/css">
+<link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+        // Wait for device API libraries to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            console.log("deviceready");
+        }
+
+        // Audio player
+        //
+        var my_media = null;
+        var mediaTimer = null;
+
+        // Play audio
+        //
+        function playAudio(src) {
+            // Create Media object from src
+            my_media = new Media(src, function()
+            {
+               this.release();
+            });
+
+            // Play audio
+            my_media.play();
+
+            // Update my_media position every second
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    // get my_media position
+                    my_media.getCurrentPosition(
+                        // success callback
+                        function(position) {
+                            if (position > -1) {
+                                setAudioPosition((position) + " sec");
+                            }
+                        },
+                        // error callback
+                        function(e) {
+                            console.log("Error getting pos=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+        }
+
+        
+
+
+        // Stop audio
+        // 
+        function stopAudio() {
+            if (my_media) {
+                my_media.stop();
+            }
+            clearInterval(mediaTimer);
+            mediaTimer = null;
+        }
+        // onSuccess Callback
+        //
+        function onSuccess() {
+            console.log("playAudio():Audio Success");
+        }
+
+        // onError Callback
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+
+        // Set audio position
+        //
+        function setAudioPosition(position) {
+            document.getElementById('audio_position').innerHTML = position;
+        }
+
+        </script>
+    <style type="text/css">
+    body{
+        width: 100%;
+        height: 100%;
+        margin: 0 0 0 0;
+
+        background: #ecf0f1;
+        
+    }
+    .warpper{
+
+    }
+    .warpper nav{
+        height: 50px;
+        background: #2980b9;
+    }
+    #back{
+        float: left;
+        width: 30px;
+        height: 30px;
+        margin-top: 10px;
+        
+    }
+    #logo{
+        display: block;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 auto;
+        padding-right: 30px;
+        width: 50px;
+        height: 50px;
+    }
+    .small-bar{
+        height: 2px;
+        background: #e74c3c;
+    }
+    #countdown {
+        color: #FFAAAA;
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 200%;
+        font-weight: bold;
+        text-decoration: none;
+        color: #2c3e50;
+        text-align: center;
+        }
+    #countdown1{
+        margin: 0 auto;
+
+    }
+    </style>
+</head>
+<body>
+    <div class="warpper">
+        <div>
+            <nav>
+                <img id="back" ontouchstart="location.href='content.html'" src="img/back.png" alt="back button">
+                <img id="logo" src="img/small-logo.png" alt="logo img">
+            </nav>
+            <div class="small-bar"></div>  
+        </div>
+        <div class="container">
+            <div id="countdown"></div>
+            <div id="countdown1" ></div>
+            
+        </div>
+    </div>
+ <script type="text/javascript">
+function countdown( elementName, minutes, seconds )
+{
+    var element, endTime, hours, mins, msLeft, time;
+
+    function twoDigits( n )
+    {
+        return (n <= 9 ? "0" + n : n);
+    }
+
+    function updateTimer()
+    {
+        msLeft = endTime - (+new Date);
+        if ( msLeft < 1 ) {
+            //playAudio('http://soundjax.com/reddo/67560%5Ealarma.mp3');
+            playAudio('/android_asset/www/alarm.mp3');
+        } else {
+            time = new Date( msLeft );
+            hours = time.getUTCHours();
+            mins = time.getUTCMinutes();
+            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+        }
+    }
+
+    element = document.getElementById( elementName );
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+}
+
+countdown( "countdown", 25, 00 );
+ </script> 
+ </script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/jquery.knob.js"></script>
+<script src="js/jquery.throttle.js"></script>
+
+<script src="js/jquery.classycountdown.js"></script>
+<script>
+                                        $(document).ready(function() {
+                                            
+                                            $('#countdown1').ClassyCountdown({
+                                                theme: "black",
+                                                end: $.now() + 1500
+                                            });
+                                            $('#countdown5').ClassyCountdown({
+                                                theme: "white",
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown6').ClassyCountdown({
+                                                theme: "white-wide",
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown7').ClassyCountdown({
+                                                theme: "white-very-wide",
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown8').ClassyCountdown({
+                                                theme: "white-black",
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown11').ClassyCountdown({
+                                                theme: "black",
+                                                style: {
+                                                    secondsElement: {
+                                                        gauge: {
+                                                            fgColor: "#F00"
+                                                        }
+                                                    }
+                                                },
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown12').ClassyCountdown({
+                                                theme: "black-wide",
+                                                labels: false,
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown13').ClassyCountdown({
+                                                theme: "black-very-wide",
+                                                labelsOptions: {
+                                                    lang: {
+                                                        days: 'D',
+                                                        hours: 'H',
+                                                        minutes: 'M',
+                                                        seconds: 'S'
+                                                    },
+                                                    style: 'font-size:0.5em; text-transform:uppercase;'
+                                                },
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown14').ClassyCountdown({
+                                                theme: "black-black",
+                                                labelsOptions: {
+                                                    style: 'font-size:0.5em; text-transform:uppercase;'
+                                                },
+                                                end: $.now() + 10000
+                                            });
+                                            $('#countdown4').ClassyCountdown({
+                                                end: $.now() + 10000,
+                                                labels: true,
+                                                style: {
+                                                    element: "",
+                                                    textResponsive: .5,
+                                                    days: {
+                                                        gauge: {
+                                                            thickness: .03,
+                                                            bgColor: "rgba(255,255,255,0.05)",
+                                                            fgColor: "#1abc9c"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                                                    },
+                                                    hours: {
+                                                        gauge: {
+                                                            thickness: .03,
+                                                            bgColor: "rgba(255,255,255,0.05)",
+                                                            fgColor: "#2980b9"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                                                    },
+                                                    minutes: {
+                                                        gauge: {
+                                                            thickness: .03,
+                                                            bgColor: "rgba(255,255,255,0.05)",
+                                                            fgColor: "#8e44ad"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                                                    },
+                                                    seconds: {
+                                                        gauge: {
+                                                            thickness: .03,
+                                                            bgColor: "rgba(255,255,255,0.05)",
+                                                            fgColor: "#f39c12"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#fff;'
+                                                    }
+
+                                                },
+                                                onEndCallback: function() {
+                                                    console.log("Time out!");
+                                                }
+                                            });
+                                            $('#countdown2').ClassyCountdown({
+                                                end: '1388468325',
+                                                now: '1378441323',
+                                                labels: true,
+                                                style: {
+                                                    element: "",
+                                                    textResponsive: .5,
+                                                    days: {
+                                                        gauge: {
+                                                            thickness: .01,
+                                                            bgColor: "rgba(0,0,0,0.05)",
+                                                            fgColor: "#1abc9c"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    },
+                                                    hours: {
+                                                        gauge: {
+                                                            thickness: .01,
+                                                            bgColor: "rgba(0,0,0,0.05)",
+                                                            fgColor: "#2980b9"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    },
+                                                    minutes: {
+                                                        gauge: {
+                                                            thickness: .01,
+                                                            bgColor: "rgba(0,0,0,0.05)",
+                                                            fgColor: "#8e44ad"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    },
+                                                    seconds: {
+                                                        gauge: {
+                                                            thickness: .01,
+                                                            bgColor: "rgba(0,0,0,0.05)",
+                                                            fgColor: "#f39c12"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    }
+
+                                                },
+                                                onEndCallback: function() {
+                                                    console.log("Time out!");
+                                                }
+                                            });
+                                            $('#countdown9').ClassyCountdown({
+                                                end: '1388468325',
+                                                now: '1380501323',
+                                                labels: true,
+                                                style: {
+                                                    element: "",
+                                                    textResponsive: .5,
+                                                    days: {
+                                                        gauge: {
+                                                            thickness: .05,
+                                                            bgColor: "rgba(0,0,0,0)",
+                                                            fgColor: "#1abc9c",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    },
+                                                    hours: {
+                                                        gauge: {
+                                                            thickness: .05,
+                                                            bgColor: "rgba(0,0,0,0)",
+                                                            fgColor: "#2980b9",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    },
+                                                    minutes: {
+                                                        gauge: {
+                                                            thickness: .05,
+                                                            bgColor: "rgba(0,0,0,0)",
+                                                            fgColor: "#8e44ad",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    },
+                                                    seconds: {
+                                                        gauge: {
+                                                            thickness: .05,
+                                                            bgColor: "rgba(0,0,0,0)",
+                                                            fgColor: "#f39c12",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:#34495e;'
+                                                    }
+
+                                                },
+                                                onEndCallback: function() {
+                                                    console.log("Time out!");
+                                                }
+                                            });
+                                            $('#countdown10').ClassyCountdown({
+                                                end: '1397468325',
+                                                now: '1388471324',
+                                                labels: true,
+                                                labelsOptions: {
+                                                    lang: {
+                                                        days: 'D',
+                                                        hours: 'H',
+                                                        minutes: 'M',
+                                                        seconds: 'S'
+                                                    },
+                                                    style: 'font-size:0.5em; text-transform:uppercase;'
+                                                },
+                                                style: {
+                                                    element: "",
+                                                    textResponsive: .5,
+                                                    days: {
+                                                        gauge: {
+                                                            thickness: .02,
+                                                            bgColor: "rgba(255,255,255,0.1)",
+                                                            fgColor: "rgba(255,255,255,1)",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                    hours: {
+                                                        gauge: {
+                                                            thickness: .02,
+                                                            bgColor: "rgba(255,255,255,0.1)",
+                                                            fgColor: "rgba(255,255,255,1)",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                    minutes: {
+                                                        gauge: {
+                                                            thickness: .02,
+                                                            bgColor: "rgba(255,255,255,0.1)",
+                                                            fgColor: "rgba(255,255,255,1)",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                    seconds: {
+                                                        gauge: {
+                                                            thickness: .02,
+                                                            bgColor: "rgba(255,255,255,0.1)",
+                                                            fgColor: "rgba(255,255,255,1)",
+                                                            lineCap: 'round'
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                },
+                                                onEndCallback: function() {
+                                                    console.log("Time out!");
+                                                }
+                                            });
+                                            $('#countdown3').ClassyCountdown({
+                                                end: '1390868325',
+                                                now: '1388461323',
+                                                labels: true,
+                                                labelsOptions: {
+                                                    lang: {
+                                                        days: 'Zile',
+                                                        hours: 'Ore',
+                                                        minutes: 'Minute',
+                                                        seconds: 'Secunde'
+                                                    },
+                                                    style: 'font-size:0.5em; text-transform:uppercase;'
+                                                },
+                                                style: {
+                                                    element: "",
+                                                    textResponsive: .5,
+                                                    days: {
+                                                        gauge: {
+                                                            thickness: .2,
+                                                            bgColor: "rgba(255,255,255,0.2)",
+                                                            fgColor: "rgb(241, 196, 15)"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                    hours: {
+                                                        gauge: {
+                                                            thickness: .2,
+                                                            bgColor: "rgba(255,255,255,0.2)",
+                                                            fgColor: "rgb(241, 196, 15)"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                    minutes: {
+                                                        gauge: {
+                                                            thickness: .2,
+                                                            bgColor: "rgba(255,255,255,0.2)",
+                                                            fgColor: "rgb(241, 196, 15)"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    },
+                                                    seconds: {
+                                                        gauge: {
+                                                            thickness: .2,
+                                                            bgColor: "rgba(255,255,255,0.2)",
+                                                            fgColor: "rgb(241, 196, 15)"
+                                                        },
+                                                        textCSS: 'font-family:\'Open Sans\'; font-size:25px; font-weight:300; color:rgba(255,255,255,0.7);'
+                                                    }
+
+                                                },
+                                                onEndCallback: function() {
+                                                    console.log("Time out!");
+                                                }
+                                            });
+                                        });
+                                    </script>  
+</body>
+</html>
