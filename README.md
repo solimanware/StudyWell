@@ -14,11 +14,17 @@ In this app u can:
 5. After four pomodori, take a longer break (15–30 minutes)
 
 Productivity is waiting you :) ^_^ !
+
 Study well !
 
 ** Version 1.3.1 **
+
 -Fixed Timer Delay
+
 ** Version 1.1 **
+
 -Fixed Orientation
+
 ** Version 1.0 **
+
 -Initial release
