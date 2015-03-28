@@ -15,5 +15,9 @@ In this app u can:
 Productivity is waiting you :) ^_^ !
 Study well !
 
+** Version 1.3.1 **
+-Fixed Timer Delay
+** Version 1.1 **
+-Fixed Orientation
 ** Version 1.0 **
-Initial release 
+-Initial release
