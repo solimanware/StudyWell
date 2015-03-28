@@ -1,5 +1,6 @@
 # StudyWell
 an Android PhoneGap Application for Study
+
 Study well makes u study with full brain concentration using Pomodoro Technique.
 The Pomodoro Technique is a time management method developed by Francesco Cirillo.
 The technique uses a timer to break down work into intervals traditionally 25 minutes in length, separated by short breaks.
