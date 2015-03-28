@@ -161,7 +161,7 @@
                 HoursLeft = 0;
                 MinutesLeft = 0;
                 SecondsLeft = 0;
-                playAudio('/android_asset/www/alarm.mp3');
+
             }
             element.find('.ClassyCountdown-days input').val(365 - DaysLeft).trigger('change');
             element.find('.ClassyCountdown-hours input').val(24 - HoursLeft).trigger('change');
@@ -392,7 +392,7 @@
                             },
                             minutes: {
                                 gauge: {
-                                    thickness: 0.04,
+                                    thickness: 0.08,
                                     bgColor: "rgba(0,0,0,0.05)",
                                     fgColor: "#e74c3c"
                                 },
@@ -400,7 +400,7 @@
                             },
                             seconds: {
                                 gauge: {
-                                    thickness: 0.02,
+                                    thickness: 0.04,
                                     bgColor: "rgba(0,0,0,0.5)",
                                     fgColor: "#f1c40f"
                                 },

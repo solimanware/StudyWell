@@ -137,6 +137,19 @@
         margin: 0 auto;
 
     }
+    #text{
+        color: #c0392b;
+        text-align: center;
+        display: none;
+    }
+    #text h2{
+        color: #8e44ad;
+        width: 150px;
+        background: #f39c12;
+        border-radius: 10px;
+        text-align: center;
+        margin: 0 auto;
+    }
     </style>
 </head>
 <body>
@@ -151,6 +164,11 @@
         <div class="container">
             <div id="countdown"></div>
             <div id="countdown1" ></div>
+            <div id="text">
+                <h1>Time Finished</h1>
+                <br>
+                <h2 ontouchstrat="window.location.reload()">Start Over</h2>
+            </div>
             
         </div>
     </div>
@@ -169,7 +187,10 @@ function countdown( elementName, minutes, seconds )
         msLeft = endTime - (+new Date);
         if ( msLeft < 1 ) {
             //playAudio('http://soundjax.com/reddo/67560%5Ealarma.mp3');
+            document.getElementById("countdown1").style.display = "none";
+            document.getElementById("text").style.display = "inline";
             playAudio('/android_asset/www/alarm.mp3');
+            
         } else {
             time = new Date( msLeft );
             hours = time.getUTCHours();
@@ -195,22 +216,7 @@ countdown( "countdown", 45, 00 );
 <script src="js/jquery.classycountdown.js"></script>
 <script>
                                         $(document).ready(function() {
-                                            $('#countdown15').ClassyCountdown({
-                                                theme: "flat-colors",
-                                                end: $.now() + 10000
-                                            });
-                                            $('#countdown16').ClassyCountdown({
-                                                theme: "flat-colors-wide",
-                                                end: $.now() + 10000
-                                            });
-                                            $('#countdown17').ClassyCountdown({
-                                                theme: "flat-colors-very-wide",
-                                                end: $.now() + 10000
-                                            });
-                                            $('#countdown18').ClassyCountdown({
-                                                theme: "flat-colors-black",
-                                                end: $.now() + 10000
-                                            });
+                                            
                                             $('#countdown1').ClassyCountdown({
                                                 theme: "black",
                                                 end: $.now() + 2700
